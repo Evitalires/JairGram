@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Evitalires/JairGram#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "materialize-css": "^0.100.2"
   }
 }
