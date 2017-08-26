@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JairGram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <!--El siguiente meta es para que se pueda ver correctamente en todos los dispositivos-->
+              <!--Es para que ocupe todo el ancho del movil, Zoom en 100%, usuario no puede hacer zoom-->
+    <meta name="viewport:" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+  </head>
+  <body>  <!-- -->
+    <section id="main-container"> <!-- -->
+      <div class="container">
+        <div class="row">
+           <!--Tamaños de pantalla -->
+          <div class="col s10 push-s1">
+            <!-- Vamos a crear otra fila -->
+            <div class="row">
+              <!--Ahora dos columnas -->
+                <!--A: Esto solo se verá en tabletas o desktops -->
+              <div class="col m5 hide-on-small-only">
+                <h1 class="Imagen">Imagen</h1>
+              </div>
+                <!-- Segunda Columna-->
+              <div class="col s12 m7">
+                <div class="row">
+                  <div class="signup-box">
+                    <h1 class="JairGram">JairGram</h1>
+                    <form class="signup-form">
+                      <h2>Registrate para ver una colección de productos</h2>
+                      <div class="section">
+                        <a class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
+                                  <!-- Mostrará lo siguiente solo en moviles -->
+                        <a class="btn btn-fb hide-on-med-and-up">Iniciar sesión</a>
+                        <!--Esto dividirá -->
+                        <div class="divider"></div>
+                        <div class="section">
+                          <input type="email" name="email" placeholder="Correo eléctronico"></input>
+                          <input type="text" name="name" placeholder="Nombre Completo"></input>
+                          <input type="text" name="username" placeholder="Nombre de usuario"></input>
+                          <input type="password" name="password" placeholder="Constraseña"></input>
+                          <button class="btn waves-effect" type="submit">Registrate</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="login-box">
+                    ¿Tienes una cuenta?<a href="/signin"> Entrar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Esto será una desplegable-->
+    <footer class="site-footer">
+      <!--Para alienar los elementos:-->
+      <div class="container">
+        <div class="row">
+          <div class="col s12 l3 center-align">
+            <a class="dropdown-button btn" href="#" data-activates='dropdown1'>Idioma</a>
+
+            <ul id="dropdown1" class='dropdown-content'>
+              <li><a href="#!"></a>Español</li>
+              <li><a href="#!"></a>Inglés</li>
+            </ul>
+          </div>
+          <div class="col s12 l3 push-l6 center-align">
+              &copy; 2016 JairGram
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+  </body>
+</html>
