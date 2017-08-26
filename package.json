@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/Evitalires/JairGram/issues"
   },
-  "homepage": "https://github.com/Evitalires/JairGram#readme"
+  "homepage": "https://github.com/Evitalires/JairGram#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
 }
