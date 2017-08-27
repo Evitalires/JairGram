@@ -6919,8 +6919,7 @@ body {
 #main-container {
   margin: 30px auto; }
 
-.tienda {
-  margin: 80px auto;
+.iphone {
   max-width: 100%; }
 
 .site-footer {
@@ -6935,8 +6934,8 @@ body {
   padding: 10px 0;
   text-align: center; }
 
-.signup-box .JairGram {
-  font-family: 'Gochi Hand', cursive;
+.signup-box .platzigram {
+  font-family: 'Oleo Script';
   font-size: 42px; }
 
 .signup-form {
@@ -6949,7 +6948,7 @@ body {
 
 .signup-form .btn.btn-fb, .signup-form .btn-fb.btn-large {
   background-color: #4090db;
-  font-size: 0.9em; }
+  font-size: .8em; }
 
 .signup-form .btn.btn-fb:hover, .signup-form .btn-fb.btn-large:hover {
   background-color: #2d6599; }

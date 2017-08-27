@@ -1,35 +1,23 @@
 {
-  "name": "jairgram",
+  "name": "JairGram",
   "version": "0.1.0",
-  "description": "Intento de proyecto de TienditaBogotá",
+  "description": "Comparte tus fotos estudiando en Platzi con el resto de la comunidad",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Evitalires/JairGram.git"
-  },
   "keywords": [
-    "Intento",
-    "Platzi",
-    "Curso",
-    "Inventario"
+    "platzi",
+    "javascript",
+    "curso-definitivo",
+    "platzigram"
   ],
-  "author": "Jair Escobar <evitalires@gmail.com> (https://twitter.com/Evitalires)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Evitalires/JairGram/issues"
-  },
-  "homepage": "https://github.com/Evitalires/JairGram#readme",
+  "author": "platzi",
   "dependencies": {
-    "express": "^4.15.4",
-    "materialize-css": "^0.100.2",
-    "pug": "^2.0.0-rc.3"
+    "express": "^4.13.4",
+    "materialize-css": "^0.97.6",
+    "pug": "^2.0.0-alpha6"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^2.3.1"
   }
 }
