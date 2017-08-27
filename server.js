@@ -1,8 +1,11 @@
 var express = require('express')
 var app = express()
+
+app.set('view engine', 'pug');
+
 //      Ruta, función
 app.get('/', function(req, res){
-  res.send('Hola Bogotá')
+  res.render('index');
 })
 
 // Ahora vamos a lanzar el sitio web

@@ -24,7 +24,8 @@
   "homepage": "https://github.com/Evitalires/JairGram#readme",
   "dependencies": {
     "express": "^4.15.4",
-    "materialize-css": "^0.100.2"
+    "materialize-css": "^0.100.2",
+    "pug": "^2.0.0-rc.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
