@@ -7,13 +7,13 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  res.render('index');
+  res.render('index', {title: 'JairGram'} );
 })
 app.get('/signup', function (req, res) {
-  res.render('index');
+  res.render('index', {title: 'JairGram - Signup'});
 })
 app.get('/signin', function (req, res) {
-  res.render('index');
+  res.render('index', {title: 'JairGram - Signin'});
 })
 
 app.listen(3000, function (err) {
