@@ -2,32 +2,21 @@ var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
 const title = require('title');
+const request = require('superagent');
+const header = require('../header');
 
-page('/', function (ctx, next) {
+page('/', header, loadPictures, function (ctx, next) {
   title('JairGram')
-  var main = document.getElementById('main-container')
-
-  var pictures = [
-    {
-      user: {
-        username: 'Evitalires',
-        avatar: 'jair.jpg'
-      },
-      url: 'https://carlosazaustre.es/content/images/2015/02/B9p1VCGIEAAZcUJ.jpg',
-      likes: 10,
-      liked: true,
-      createdAt: new Date()
-    },
-    {
-      user: {
-        username: 'Evitalires',
-        avatar: 'jair.jpg'
-      },
-      url: 'https://userscontent2.emaze.com/images/e0db49a7-545f-427e-bb4e-95f990e2234b/5d80eb38c5581aafcdc06d0b3c1cc6e8.jpg',
-      likes: 1,
-      liked: true,
-      createdAt: new Date().setDate(new Date().getDate() - 100)
-    }
-  ];
-  empty(main).appendChild(template(pictures));
+  var main = document.getElementById('main-container');
+  empty(main).appendChild(template(ctx.pictures));
 })
+
+function loadPictures(ctx, next) {
+  request
+    .get('api/pictures')
+    .end(function (err, res) {
+      if (err) return console.log(err);
+      ctx.pictures = res.body;
+      next()
+    })
+}
