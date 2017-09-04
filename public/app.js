@@ -12962,7 +12962,7 @@ async function asyncLoad(ctx, next) {
 },{"../header":72,"./template":74,"axios":1,"empty-element":29,"page":59,"superagent":62,"title":68}],74:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['<div class="container timeline">\n              <div class="row">\n                <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n                  <form id = "formUpload" enctype="multipart/form-data" class="form-upload">\n                    <div id="fileName" class="fileUpload btn cyan">\n                      <span><i class="fa fa-camera-retro" aria-hidden="true"></i> ', '</span>\n                      <input name="picture" id="file" type="file" class="upload" onchange=', '/>\n                    </div>\n                    <button id="btnUpload" type="submit" class="btn btn-flat cyan hide">', '</button>\n                    <button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times" aria-hidden="true"></i></button>\n                  </form>\n                </div>\n              </div>\n              <div class="row">\n                <div class="col s12 m10 offset-m1 l6 offset-l3">\n                  ', '\n                </div>\n              </div>\n            </div>'], ['<div class="container timeline">\n              <div class="row">\n                <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n                  <form id = "formUpload" enctype="multipart/form-data" class="form-upload">\n                    <div id="fileName" class="fileUpload btn cyan">\n                      <span><i class="fa fa-camera-retro" aria-hidden="true"></i> ', '</span>\n                      <input name="picture" id="file" type="file" class="upload" onchange=', '/>\n                    </div>\n                    <button id="btnUpload" type="submit" class="btn btn-flat cyan hide">', '</button>\n                    <button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times" aria-hidden="true"></i></button>\n                  </form>\n                </div>\n              </div>\n              <div class="row">\n                <div class="col s12 m10 offset-m1 l6 offset-l3">\n                  ', '\n                </div>\n              </div>\n            </div>']);
+var _templateObject = _taggedTemplateLiteral(['<div class="container timeline">\n    <div class="row">\n      <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n        <form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=', '>\n          <div id="fileName" class="fileUpload btn btn-flat cyan">\n            <span><i class="fa fa-camera" aria-hidden="true"></i> ', '</span>\n            <input name="picture" id="file" type="file" class="upload" onchange=', ' />\n          </div>\n          <button id="btnUpload" type="submit" class="btn btn-flat cyan hide">', '</button>\n          <button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times" aria-hidden="true"></i></button>\n        </form>\n      </div>\n    </div>\n    <div class="row">\n      <div class="col s12 m10 offset-m1 l6 offset-l3">\n        ', '\n      </div>\n    </div>\n  </div>'], ['<div class="container timeline">\n    <div class="row">\n      <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n        <form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=', '>\n          <div id="fileName" class="fileUpload btn btn-flat cyan">\n            <span><i class="fa fa-camera" aria-hidden="true"></i> ', '</span>\n            <input name="picture" id="file" type="file" class="upload" onchange=', ' />\n          </div>\n          <button id="btnUpload" type="submit" class="btn btn-flat cyan hide">', '</button>\n          <button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times" aria-hidden="true"></i></button>\n        </form>\n      </div>\n    </div>\n    <div class="row">\n      <div class="col s12 m10 offset-m1 l6 offset-l3">\n        ', '\n      </div>\n    </div>\n  </div>']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -12970,27 +12970,41 @@ var yo = require('yo-yo');
 var layout = require('../layout');
 var picture = require('../picture-card');
 var translate = require('../translate').message;
+var request = require('superagent');
 
 module.exports = function (pictures) {
-  var template = yo(_templateObject, translate('upload-picture'), onchange, translate('upload'), cancel, pictures.map(function (pic) {
+  var el = yo(_templateObject, onsubmit, translate('upload-picture'), onchange, translate('upload'), cancel, pictures.map(function (pic) {
     return picture(pic);
   }));
-  function toggleButton() {
+
+  function toggleButtons() {
     document.getElementById('fileName').classList.toggle('hide');
     document.getElementById('btnUpload').classList.toggle('hide');
     document.getElementById('btnCancel').classList.toggle('hide');
   }
+
   function cancel() {
-    toggleButton();
+    toggleButtons();
     document.getElementById('formUpload').reset();
   }
+
   function onchange() {
-    toggleButton();
+    toggleButtons();
   }
-  return layout(template);
+
+  function onsubmit(ev) {
+    ev.preventDefault();
+
+    var data = new FormData(this);
+    request.post('/api/pictures').send(data).end(function (err, res) {
+      console.log(arguments);
+    });
+  }
+
+  return layout(el);
 };
 
-},{"../layout":77,"../picture-card":78,"../translate":85,"yo-yo":69}],75:[function(require,module,exports){
+},{"../layout":77,"../picture-card":78,"../translate":85,"superagent":62,"yo-yo":69}],75:[function(require,module,exports){
 'use strict';
 
 var page = require('page');
