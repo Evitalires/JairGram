@@ -11,6 +11,7 @@
   ],
   "author": "platzi",
   "dependencies": {
+    "axios": "^0.16.2",
     "empty-element": "^1.0.0",
     "express": "^4.13.4",
     "intl": "^1.2.5",
