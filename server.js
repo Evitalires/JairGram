@@ -35,7 +35,7 @@ app.get('/api/pictures', function (req, res) {
   var pictures = [
     {
       user: {
-        username: 'Evitalires',
+        username: 'evitalires',
         avatar: 'jair.jpg'
       },
       url: 'https://carlosazaustre.es/content/images/2015/02/B9p1VCGIEAAZcUJ.jpg',
@@ -45,7 +45,7 @@ app.get('/api/pictures', function (req, res) {
     },
     {
       user: {
-        username: 'Evitalires',
+        username: 'evitalires',
         avatar: 'jair.jpg'
       },
       url: 'https://userscontent2.emaze.com/images/e0db49a7-545f-427e-bb4e-95f990e2234b/5d80eb38c5581aafcdc06d0b3c1cc6e8.jpg',
@@ -54,12 +54,11 @@ app.get('/api/pictures', function (req, res) {
       createdAt: new Date().setDate(new Date().getDate() - 100)
     }
   ];
-
-
   setTimeout(function () {
     res.send(pictures);
-  }, 2000)
+  }, 500);
 });
+
 
 app.post('/api/pictures', function (req, res) {
   upload(req, res, function (err) {
@@ -70,8 +69,48 @@ app.post('/api/pictures', function (req, res) {
   })
 })
 
+
+
+app.get('/api/user/:username', function (req, res) {
+  const user = {
+    username: 'evitalires',
+    avatar: 'https://pbs.twimg.com/profile_images/790109881298722816/1lUAE_IX_400x400.jpg',
+    pictures: [
+      {
+        id: 1,
+        src: 'https://image.redbull.com/rbcom/010/2015-06-02/1331726754024_5/0010/1/1500/1000/1/the-witcher-3-wild-hunt.jpg',
+        likes: 4
+      },
+      {
+        id: 2,
+        src: 'http://www.seletiene.com/linio/thewitcher/banner1.jpg',
+        likes: 7
+      },
+      {
+        id: 3,
+        src: 'https://www.rockpapershotgun.com/images/13/jun/witch2a.jpg',
+        likes: 56
+      },
+      {
+        id: 4,
+        src: 'https://images.g2a.com/images/1024x768/1x1x0/960210b35e92/59128871ae653afbe342aa9c',
+        likes: 35
+      },
+      {
+        id: 5,
+        src: 'http://www.somosxbox.com/wp-content/uploads/2014/07/The-Witcher-3-Igni-21.jpg',
+        likes: 9
+      }
+    ]
+  }
+  res.send(user);
+})
+
+app.get('/:username', function (req, res){
+  res.render('index', { title: `Platzigram - ${req.params.username}` })
+})
+
 app.listen(3000, function (err) {
   if (err) return console.log('Hubo un error'), process.exit(1);
-
   console.log('Platzigram escuchando en el puerto 3000');
 })

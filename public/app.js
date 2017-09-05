@@ -13012,10 +13012,11 @@ var page = require('page');
 require('./homepage');
 require('./signup');
 require('./signin');
+require('./user-page');
 require('./footer');
 page();
 
-},{"./footer":71,"./homepage":73,"./signin":79,"./signup":81,"page":59}],76:[function(require,module,exports){
+},{"./footer":71,"./homepage":73,"./signin":79,"./signup":81,"./user-page":86,"page":59}],76:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['<div class="container landing">\n              <div class="row">\n                <div class="col s10 push-s1">\n                  <div class="row">\n                    <div class="col m5 hide-on-small-only">\n                      <img class="iphone" src="iphone.png" />\n                    </div>\n                    ', '\n                  </div>\n                </div>\n              </div>\n            </div>'], ['<div class="container landing">\n              <div class="row">\n                <div class="col s10 push-s1">\n                  <div class="row">\n                    <div class="col m5 hide-on-small-only">\n                      <img class="iphone" src="iphone.png" />\n                    </div>\n                    ', '\n                  </div>\n                </div>\n              </div>\n            </div>']);
@@ -13043,7 +13044,7 @@ module.exports = function layout(content) {
 },{"../translate":85,"yo-yo":69}],78:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['<div class="card ', '" >\n                <div class="card-image">\n                  <img class="activator" src="', '">\n                </div>\n                <div class="card-content">\n                  <a href="user/', '" class="card-title">\n                    <img src="', '" class="avatar" />\n                    <span class="username">', '</span>\n                  </a>\n                  <small class="right time">', '</small>\n                  <p>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n                    <span class="left likes">', '</span>\n                  </p>\n                </div>\n              </div>'], ['<div class="card ', '" >\n                <div class="card-image">\n                  <img class="activator" src="', '">\n                </div>\n                <div class="card-content">\n                  <a href="user/', '" class="card-title">\n                    <img src="', '" class="avatar" />\n                    <span class="username">', '</span>\n                  </a>\n                  <small class="right time">', '</small>\n                  <p>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n                    <span class="left likes">', '</span>\n                  </p>\n                </div>\n              </div>']);
+var _templateObject = _taggedTemplateLiteral(['<div class="card ', '" >\n                <div class="card-image">\n                  <img class="activator" src="', '">\n                </div>\n                <div class="card-content">\n                  <a href="/', '" class="card-title">\n                    <img src="', '" class="avatar" />\n                    <span class="username">', '</span>\n                  </a>\n                  <small class="right time">', '</small>\n                  <p>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n                    <span class="left likes">', '</span>\n                  </p>\n                </div>\n              </div>'], ['<div class="card ', '" >\n                <div class="card-image">\n                  <img class="activator" src="', '">\n                </div>\n                <div class="card-content">\n                  <a href="/', '" class="card-title">\n                    <img src="', '" class="avatar" />\n                    <span class="username">', '</span>\n                  </a>\n                  <small class="right time">', '</small>\n                  <p>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n                    <a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n                    <span class="left likes">', '</span>\n                  </p>\n                </div>\n              </div>']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -13208,4 +13209,81 @@ module.exports = {
   date: new IntlRelativeFormat(locale)
 };
 
-},{"./en":83,"./es":84,"intl":51,"intl-messageformat":36,"intl-relativeformat":45,"intl-relativeformat/dist/locale-data/en.js":43,"intl-relativeformat/dist/locale-data/es.js":44,"intl/locale-data/jsonp/en-US.js":53,"intl/locale-data/jsonp/es.js":54}]},{},[75]);
+},{"./en":83,"./es":84,"intl":51,"intl-messageformat":36,"intl-relativeformat":45,"intl-relativeformat/dist/locale-data/en.js":43,"intl-relativeformat/dist/locale-data/es.js":44,"intl/locale-data/jsonp/en-US.js":53,"intl/locale-data/jsonp/es.js":54}],86:[function(require,module,exports){
+'use strict';
+
+var _page = require('page');
+
+var _page2 = _interopRequireDefault(_page);
+
+var _header = require('../header');
+
+var _header2 = _interopRequireDefault(_header);
+
+var _title = require('title');
+
+var _title2 = _interopRequireDefault(_title);
+
+var _emptyElement = require('empty-element');
+
+var _emptyElement2 = _interopRequireDefault(_emptyElement);
+
+var _template = require('./template.js');
+
+var _template2 = _interopRequireDefault(_template);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _page2.default)('/:username', _header2.default, loadUser, function (ctx, next) {
+  var main = document.getElementById('main-container');
+  (0, _title2.default)('JairGram - ' + ctx.params.username);
+  (0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.user));
+});
+
+async function loadUser(ctx, next) {
+  try {
+    ctx.user = await fetch('/api/user/' + ctx.params.username).then(function (res) {
+      return res.json();
+    });
+    next();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+},{"../header":72,"./template.js":87,"empty-element":29,"page":59,"title":68}],87:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['<div class="container user-page">\n                  <div class="row">\n                    <div class="col s12 m10 offset-m1 l8 offset-l2 center align heading">\n                      <div class="row">\n                        <div class="col s12 m10 offset-m1 l3 offset-l1">\n                          <img src="', '" class="responsive-img circle" />\n                        </div>\n                        <div class="col s12 m10 offset-m1 l6 left-align">\n                          <h2 class="hide-on-large-only center-align">', '</h2>\n                          <h2 class="hide-on-med-and-down left-align">', '</h2>\n                        </div>\n                      </div>\n                    </div>\n                    <div class = "row">\n                      ', '\n                    </div>\n                  </div>\n              </div>'], ['<div class="container user-page">\n                  <div class="row">\n                    <div class="col s12 m10 offset-m1 l8 offset-l2 center align heading">\n                      <div class="row">\n                        <div class="col s12 m10 offset-m1 l3 offset-l1">\n                          <img src="', '" class="responsive-img circle" />\n                        </div>\n                        <div class="col s12 m10 offset-m1 l6 left-align">\n                          <h2 class="hide-on-large-only center-align">', '</h2>\n                          <h2 class="hide-on-med-and-down left-align">', '</h2>\n                        </div>\n                      </div>\n                    </div>\n                    <div class = "row">\n                      ', '\n                    </div>\n                  </div>\n              </div>']),
+    _templateObject2 = _taggedTemplateLiteral(['<div class="col s12 m6 l4">\n                                    <div class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </div>\n                                   </div>'], ['<div class="col s12 m6 l4">\n                                    <div class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </div>\n                                   </div>']);
+
+exports.default = userPageTemplate;
+
+var _yoYo = require('yo-yo');
+
+var _yoYo2 = _interopRequireDefault(_yoYo);
+
+var _layout = require('../layout');
+
+var _layout2 = _interopRequireDefault(_layout);
+
+var _translate = require('../translate');
+
+var _translate2 = _interopRequireDefault(_translate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function userPageTemplate(user) {
+  var el = (0, _yoYo2.default)(_templateObject, user.avatar, user.username, user.username, user.pictures.map(function (picture) {
+    return (0, _yoYo2.default)(_templateObject2, picture.src, picture.likes);
+  }));
+  return (0, _layout2.default)(el);
+}
+
+},{"../layout":77,"../translate":85,"yo-yo":69}]},{},[75]);
