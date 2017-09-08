@@ -13264,6 +13264,18 @@ function _interopRequireDefault(obj) {
   (0, _title2.default)('JairGram - ' + ctx.params.username);
   (0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.user));
 });
+(0, _page2.default)('/:username/:id', loadUser, _header2.default, function (ctx, next) {
+  var main = document.getElementById('main-container');
+  (0, _title2.default)('JairGram - ' + ctx.user.username);
+  (0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.user));
+  $('#modal' + ctx.params.id).openModal({
+    dismissible: true,
+    opacity: .5,
+    complete: function complete() {
+      (0, _page2.default)('/' + ctx.params.username);
+    }
+  });
+});
 
 async function loadUser(ctx, next) {
   try {
@@ -13284,7 +13296,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _templateObject = _taggedTemplateLiteral(['<div class="container user-page">\n                  <div class="row">\n                    <div class="col s12 m10 offset-m1 l8 offset-l2 center align heading">\n                      <div class="row">\n                        <div class="col s12 m10 offset-m1 l3 offset-l1">\n                          <img src="', '" class="responsive-img circle" />\n                        </div>\n                        <div class="col s12 m10 offset-m1 l6 left-align">\n                          <h2 class="hide-on-large-only center-align">', '</h2>\n                          <h2 class="hide-on-med-and-down left-align">', '</h2>\n                        </div>\n                      </div>\n                    </div>\n                    <div class = "row">\n                      ', '\n                    </div>\n                  </div>\n              </div>'], ['<div class="container user-page">\n                  <div class="row">\n                    <div class="col s12 m10 offset-m1 l8 offset-l2 center align heading">\n                      <div class="row">\n                        <div class="col s12 m10 offset-m1 l3 offset-l1">\n                          <img src="', '" class="responsive-img circle" />\n                        </div>\n                        <div class="col s12 m10 offset-m1 l6 left-align">\n                          <h2 class="hide-on-large-only center-align">', '</h2>\n                          <h2 class="hide-on-med-and-down left-align">', '</h2>\n                        </div>\n                      </div>\n                    </div>\n                    <div class = "row">\n                      ', '\n                    </div>\n                  </div>\n              </div>']),
-    _templateObject2 = _taggedTemplateLiteral(['<div class="col s12 m6 l4">\n                                    <div class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </div>\n                                   </div>'], ['<div class="col s12 m6 l4">\n                                    <div class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </div>\n                                   </div>']);
+    _templateObject2 = _taggedTemplateLiteral(['<div class="col s12 m6 l4">\n                                    <a href="/', '/', '" class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </a>\n                                    <div id="modal', '" class="modal modal-fixed-footer">\n                                      <div class="modal-content">\n                                        <img src="', '" />\n                                      </div>\n                                      <div class="modal-footer">\n                                        <div class="btn btn-flat likes"><i class="fa fa-heart"></i> ', '</div>\n                                      </div>\n                                    </div>\n                                  </div>'], ['<div class="col s12 m6 l4">\n                                    <a href="/', '/', '" class="picture-container">\n                                      <img src="', '" class="picture"/>\n                                      <div class="likes"><i class="fa fa-heart"></i>', '</div>\n                                    </a>\n                                    <div id="modal', '" class="modal modal-fixed-footer">\n                                      <div class="modal-content">\n                                        <img src="', '" />\n                                      </div>\n                                      <div class="modal-footer">\n                                        <div class="btn btn-flat likes"><i class="fa fa-heart"></i> ', '</div>\n                                      </div>\n                                    </div>\n                                  </div>']);
 
 exports.default = userPageTemplate;
 
@@ -13296,10 +13308,6 @@ var _layout = require('../layout');
 
 var _layout2 = _interopRequireDefault(_layout);
 
-var _translate = require('../translate');
-
-var _translate2 = _interopRequireDefault(_translate);
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -13308,9 +13316,11 @@ function _taggedTemplateLiteral(strings, raw) {
   return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
 }
 
+var translate = require('../translate').message;
+
 function userPageTemplate(user) {
   var el = (0, _yoYo2.default)(_templateObject, user.avatar, user.username, user.username, user.pictures.map(function (picture) {
-    return (0, _yoYo2.default)(_templateObject2, picture.src, picture.likes);
+    return (0, _yoYo2.default)(_templateObject2, user.username, picture.id, picture.src, picture.likes, picture.id, picture.src, translate('likes', { likes: picture.likes }));
   }));
   return (0, _layout2.default)(el);
 }

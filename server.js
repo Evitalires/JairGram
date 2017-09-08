@@ -107,9 +107,11 @@ app.get('/api/user/:username', function (req, res) {
 })
 
 app.get('/:username', function (req, res){
-  res.render('index', { title: `Platzigram - ${req.params.username}` })
+  res.render('index', { title: `JairGram - ${req.params.username}` })
 })
-
+app.get('/:username/:id', function (req, res){
+  res.render('index', { title: `JairGram - ${req.params.username}` })
+})
 app.listen(3000, function (err) {
   if (err) return console.log('Hubo un error'), process.exit(1);
   console.log('Platzigram escuchando en el puerto 3000');
